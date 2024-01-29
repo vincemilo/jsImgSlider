@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: 16px;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 16px;
+}
+
+#content {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#wrapper {
+    flex: 1;
+}
+
+.new-task {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project {
+    border: 3px solid black;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.project-container {
+    width: 80vw;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    gap: 0 8px;
+    padding: 4px;
+}
+
+.tasks {
+    width: 75vw;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+.priority {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.collapse {
+    visibility: collapse;
+}
+
+.edit-btn, .del-btn, .new-btn {
+    max-width: 1.2rem;
+    cursor: pointer; 
+}
+
+.new-btn {
+    margin-top: 16px;
+}
+
+footer{
+    font-size: 0.8rem;
+}
+
+.icon-btns {
+    display: flex;
+    gap: 8px
+}
+
+input, select, textarea {
+    padding: 8px;
+    margin: 4px;
+    width: 50vw;
+}
+
+button {
+    cursor: pointer;
+    background-color: rgb(30, 95, 218);
+    border: none;
+    color: white;
+    padding: 5px 22px;
+    text-align: center;
+    text-decoration: none;
+    font-size: small;
+    border-radius: 4px;
+}
+
+.high-priority {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#high-priority {
+    width: 100%;
+}
+
+#add-to-existing-project {
+    width: 98%;
+}
+
+.task-descrip {
+    padding: 4px;
+}
+
+/* @media only screen and (orientation: portrait) {
+    .projects, input, select, textarea, button {
+        font-size: 2rem;
+    }
+
+    .edit-btn, .del-btn, .new-btn {
+        max-width: 2rem;
+    }
+} */
