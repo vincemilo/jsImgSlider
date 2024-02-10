@@ -45,3 +45,13 @@ body {
 .hidden {
     display: none;
 }
+
+.window img {
+    max-height: 250px;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
