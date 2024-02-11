@@ -31,7 +31,10 @@ export default function slider() {
 
     const navDotContainer = document.createElement('div');
     navDotContainer.classList.add('navdots');
-    for (let i = 0; i < imgCarousel.length; i += 1) {
+    const initialDot = new Image();
+    initialDot.src = Active;
+    dotArray.push(initialDot);
+    for (let i = 0; i < imgCarousel.length - 1; i += 1) {
         const dot = new Image();
         dot.src = Inactive;
         dotArray.push(dot);
@@ -39,30 +42,39 @@ export default function slider() {
 
     dotArray.forEach((dot) => navDotContainer.appendChild(dot));
 
-    const replaceImg = () => {
+    const replaceImg = (oldIndex) => {
         const currImg = new Image();
         currImg.src = imgCarousel[index];
         window.firstChild.remove();
         window.appendChild(currImg);
-        console.log(dotArray[index]);
+        const inactiveDot = new Image();
+        inactiveDot.src = Inactive;
+        dotArray.splice(oldIndex, 1, inactiveDot);
+        const activeDot = new Image();
+        activeDot.src = Active;
+        dotArray.splice(index, 1, activeDot);
+        navDotContainer.innerText = '';
+        dotArray.forEach((dot) => navDotContainer.appendChild(dot));
     };
 
     nextButton.addEventListener('click', () => {
+        const oldIndex = index;
         if (index === imgCarousel.length - 1) {
             index = 0;
         } else {
             index += 1;
         }
-        replaceImg();
+        replaceImg(oldIndex);
     });
 
     prevButton.addEventListener('click', () => {
+        const oldIndex = index;
         if (index === 0) {
             index = imgCarousel.length - 1;
         } else {
             index -= 1;
         }
-        replaceImg();
+        replaceImg(oldIndex);
     });
     // const active = new Image();
     // active.src = Active;
