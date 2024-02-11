@@ -15,4 +15,4 @@ main.appendChild(slider());
 
 content.appendChild(header());
 content.appendChild(main);
-content.appendChild(footer());
+// content.appendChild(footer());

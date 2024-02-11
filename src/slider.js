@@ -5,10 +5,14 @@ import Marle from './img/Marle2.png';
 import Robo from './img/Robo2.png';
 import Ayla from './img/Ayla.png';
 import Magus from './img/Magus2.png';
+import Active from './img/full-stop.png';
+import Inactive from './img/period.png';
 
 export default function slider() {
     const sliderContainer = document.createElement('div');
-    sliderContainer.classList.add('slider');
+    sliderContainer.classList.add('slider-container');
+    const windowWrapper = document.createElement('div');
+    windowWrapper.classList.add('window-wrapper');
     const window = document.createElement('div');
     window.className = 'window';
     const imgCarousel = [Crono, Frog, Lucca, Marle, Robo, Ayla, Magus];
@@ -22,10 +26,26 @@ export default function slider() {
     [initialImg.src] = imgCarousel;
     window.appendChild(initialImg);
     let index = 0;
-    // imgCarousel.forEach((src) => {
-    //     const img = document.createElement('img');
-    //     img.src = src;
-    // });
+
+    const dotArray = [];
+
+    const navDotContainer = document.createElement('div');
+    navDotContainer.classList.add('navdots');
+    for (let i = 0; i < imgCarousel.length; i += 1) {
+        const dot = new Image();
+        dot.src = Inactive;
+        dotArray.push(dot);
+    }
+
+    dotArray.forEach((dot) => navDotContainer.appendChild(dot));
+
+    const replaceImg = () => {
+        const currImg = new Image();
+        currImg.src = imgCarousel[index];
+        window.firstChild.remove();
+        window.appendChild(currImg);
+        console.log(dotArray[index]);
+    };
 
     nextButton.addEventListener('click', () => {
         if (index === imgCarousel.length - 1) {
@@ -33,10 +53,7 @@ export default function slider() {
         } else {
             index += 1;
         }
-        const currImg = new Image();
-        currImg.src = imgCarousel[index];
-        window.firstChild.remove();
-        window.appendChild(currImg);
+        replaceImg();
     });
 
     prevButton.addEventListener('click', () => {
@@ -45,14 +62,17 @@ export default function slider() {
         } else {
             index -= 1;
         }
-        const currImg = new Image();
-        currImg.src = imgCarousel[index];
-        window.firstChild.remove();
-        window.appendChild(currImg);
+        replaceImg();
     });
+    // const active = new Image();
+    // active.src = Active;
+    // navDotContainer.firstChild.remove();
+    // navDotContainer.prepend(active);
 
-    sliderContainer.appendChild(prevButton);
-    sliderContainer.appendChild(window);
-    sliderContainer.appendChild(nextButton);
+    windowWrapper.appendChild(prevButton);
+    windowWrapper.appendChild(window);
+    windowWrapper.appendChild(nextButton);
+    sliderContainer.appendChild(windowWrapper);
+    sliderContainer.appendChild(navDotContainer);
     return sliderContainer;
 }
