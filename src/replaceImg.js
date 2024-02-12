@@ -2,6 +2,7 @@ import Active from './img/full-stop.png';
 import Inactive from './img/period.png';
 import imgCarousel from './imgCarousel';
 import dotArray from './dotArray';
+import clearNavDots from './clearNavDots';
 
 export default function replaceImg(oldIndex, index, navDotContainer, window) {
     const currImg = new Image();
@@ -17,6 +18,7 @@ export default function replaceImg(oldIndex, index, navDotContainer, window) {
     activeDot.id = index;
     activeDot.classList.add('active');
     dotArray.splice(index, 1, activeDot);
+    clearNavDots();
     dotArray.forEach((dot) => navDotContainer.appendChild(dot));
     return navDotContainer;
 }

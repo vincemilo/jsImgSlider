@@ -1,6 +1,9 @@
 import navDots from './navDots';
 import imgCarousel from './imgCarousel';
 import replaceImg from './replaceImg';
+import Prev from './img/prev.png';
+import Next from './img/next.png';
+import advanceSlide from './advanceSlide';
 
 export default function slider() {
     const sliderContainer = document.createElement('div');
@@ -9,11 +12,11 @@ export default function slider() {
     windowWrapper.classList.add('window-wrapper');
     const window = document.createElement('div');
     window.className = 'window';
-    const nextButton = document.createElement('div');
-    nextButton.innerText = 'Next';
+    const nextButton = new Image();
+    nextButton.src = Next;
     nextButton.classList.add('nav-button');
-    const prevButton = document.createElement('div');
-    prevButton.innerText = 'Prev';
+    const prevButton = new Image();
+    prevButton.src = Prev;
     prevButton.classList.add('nav-button');
     const initialImg = new Image();
     [initialImg.src] = imgCarousel;
@@ -29,7 +32,6 @@ export default function slider() {
         } else {
             index += 1;
         }
-        navDotContainer.innerText = '';
         replaceImg(oldIndex, index, navDotContainer, window);
     });
 
@@ -40,7 +42,6 @@ export default function slider() {
         } else {
             index -= 1;
         }
-        navDotContainer.innerText = '';
         replaceImg(oldIndex, index, navDotContainer, window);
     });
 
@@ -52,10 +53,23 @@ export default function slider() {
         replaceImg(oldIndex, index, navDotContainer, window);
     });
 
+    const play = document.createElement('div');
+    play.innerText = 'Play';
+    play.addEventListener('click', () => {
+        const newIndex = advanceSlide(
+            index,
+            imgCarousel,
+            navDotContainer,
+            window
+        );
+        index = newIndex;
+    });
+
     windowWrapper.appendChild(prevButton);
     windowWrapper.appendChild(window);
     windowWrapper.appendChild(nextButton);
     sliderContainer.appendChild(windowWrapper);
     sliderContainer.appendChild(navDotContainer);
+    sliderContainer.appendChild(play);
     return sliderContainer;
 }

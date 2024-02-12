@@ -49,6 +49,7 @@ body {
 .window img {
     height: 300px;
     width: 190px;
+    animation: fadeIn 1.5s;
 }
 
 .window-wrapper {
@@ -66,4 +67,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.nav-button {
+    max-width: 30px;
+    padding: 8px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+footer {
+    margin-top: 50px;
 }

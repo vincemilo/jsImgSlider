@@ -1,8 +1,7 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import header from './header';
 import './style.css';
 import footer from './footer';
-import menu from './menu';
 import slider from './slider';
 
 const content = document.createElement('div');
@@ -15,4 +14,4 @@ main.appendChild(slider());
 
 content.appendChild(header());
 content.appendChild(main);
-// content.appendChild(footer());
+content.appendChild(footer());
