@@ -4,6 +4,7 @@ import replaceImg from './replaceImg';
 import Prev from './img/prev.png';
 import Next from './img/next.png';
 import advanceSlide from './advanceSlide';
+import { getIndex, setIndex } from './i';
 
 export default function slider() {
     const sliderContainer = document.createElement('div');
@@ -21,7 +22,7 @@ export default function slider() {
     const initialImg = new Image();
     [initialImg.src] = imgCarousel;
     window.appendChild(initialImg);
-    let index = 0;
+    let index = getIndex();
 
     const navDotContainer = navDots(imgCarousel);
 
@@ -32,6 +33,7 @@ export default function slider() {
         } else {
             index += 1;
         }
+        setIndex(index);
         replaceImg(oldIndex, index, navDotContainer, window);
     });
 
@@ -42,6 +44,7 @@ export default function slider() {
         } else {
             index -= 1;
         }
+        setIndex(index);
         replaceImg(oldIndex, index, navDotContainer, window);
     });
 
@@ -50,19 +53,29 @@ export default function slider() {
         const oldIndex = Number(activeImg.id);
         navDotContainer.innerText = '';
         index = Number(e.target.id);
+        setIndex(index);
         replaceImg(oldIndex, index, navDotContainer, window);
     });
 
     const play = document.createElement('div');
+    play.className = 'button';
     play.innerText = 'Play';
+    let intervalId = 0;
     play.addEventListener('click', () => {
-        const newIndex = advanceSlide(
-            index,
-            imgCarousel,
-            navDotContainer,
-            window
-        );
-        index = newIndex;
+        if (play.innerText === 'Play') {
+            intervalId = setInterval(() => {
+                index = advanceSlide(
+                    index,
+                    imgCarousel,
+                    navDotContainer,
+                    window
+                );
+            }, 5000);
+            play.innerText = 'Pause';
+        } else {
+            play.innerText = 'Play';
+            clearInterval(intervalId);
+        }
     });
 
     windowWrapper.appendChild(prevButton);

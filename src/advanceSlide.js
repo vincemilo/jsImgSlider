@@ -1,4 +1,5 @@
 import replaceImg from './replaceImg';
+import { setIndex } from './i';
 
 export default function advanceSlide(
     index,
@@ -14,5 +15,6 @@ export default function advanceSlide(
         newIndex += 1;
     }
     replaceImg(oldIndex, newIndex, navDotContainer, window);
+    setIndex(newIndex);
     return newIndex;
 }
