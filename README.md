@@ -13,7 +13,7 @@ Assignment: https://www.theodinproject.com/lessons/javascript-dynamic-user-inter
 - Timeout which advances the slides every 5 seconds
 
 
-## Process
+### Process
 
 -   Configuring ESLint and Prettier with VSCode
 
